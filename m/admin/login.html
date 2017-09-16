@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>肇庆学院校园打印服务</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<meta name ="keywords" content="肇庆学院,打印,校园,服务"/>
+<meta name="description" content="专属肇庆学院的校园打印服务,倾心为每位同学服务在线下单，在线付款/货到付款，送货上门无须拥挤，无须排队，10s完成注册，通通在线完成"/>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="css/login.css" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="UNITED COMMS Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> 
+   $("#login").click(function(){
+			login();
+			return false;
+      });
+      
+      function login(){
+		var user =$("#user").val();
+		var pwd=$("#psw").val();
+		if(user=="")
+		{
+			alert("账号不能为空");
+            $("input#user").focus(); 
+            return false;
+		}
+        if(pwd=="")
+        {
+			alert("密码不能为空");
+            $("input#user").focus();
+            return false;
+		}
+		$.ajax({
+			type:"post",
+			data: { "user": user, "pwd": pwd },
+			url:"login.php",
+			beforeSend:function(){
+				$("#tiptext").html("登录中...");
+		    },
+		    success:function(msg){	
+                    if(msg==1)
+                    {
+                        $("#tiptext").html("登录成功");
+                      window.location.href="admin/index.html"; 
+                    }
+                    else{
+                        //location.href="user/index.php"; 
+                        $("#tiptext").html(msg);
+                    }
+                    	
+                    //confirm.innerHTML="11"
+                    //
+                    	
+			  } 
+              })
+              }
+    
+    
+    
+
+</script>
+</head>
+<body>
+<form action="login.php" method="post">
+<input type="text" name="user" id="user" />
+<input  type="password" name="pwd" id="psw"/>
+<input  type="submit"  value="登陆"/>
+<span id="tiptext"></span>
+</form>
+
+</body>
+</html>
